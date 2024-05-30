@@ -1,0 +1,26 @@
+version: 0.6.0
+inputs:
+  files:
+    - make_histos.py
+    - make_plots.ipynb
+workflow:
+  type: serial
+  resources:
+    cvmfs:
+      - sw.hsf.org
+  specification:
+    steps:
+      - name: make_histos
+        environment: 'ghcr.io/key4hep/key4hep-images/alma9'
+        #kubernetes_memory_limit: '256Mi'
+        commands:
+        - source /cvmfs/sw.hsf.org/key4hep/setup.sh -r 2024-04-12 && python make_histos.py
+      - name: make_plots
+        environment: 'ghcr.io/key4hep/key4hep-images/alma9'
+        #kubernetes_memory_limit: '256Mi'
+        commands:
+        - source /cvmfs/sw.hsf.org/key4hep/setup.sh -r 2024-04-12 && jupyter execute make_plots.ipynb
+outputs:
+  files:
+    - z_mass.pdf
+    - recoil_mass.pdf
