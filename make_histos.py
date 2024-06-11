@@ -9,8 +9,9 @@ import ROOT
 
 
 def main():
-    files = glob.glob("/eos/project/k/key4hep/www/key4hep/tutorial/zh_mumu_filtered/higgs_recoil_from_gaudi_*.edm4hep.root")
-    reader = root_io.Reader(files)
+    # files = glob.glob("/eos/project/k/key4hep/www/key4hep/tutorial/zh_mumu_filtered/higgs_recoil_from_gaudi_*.edm4hep.root")
+    # reader = root_io.Reader(files)
+    reader = root_io.Reader("root://eosuser.cern.ch//eos/project/k/key4hep/www/key4hep/tutorial/zh_mumu_filtered/higgs_recoil_from_gaudi_*.edm4hep.root")
 
     e_cms = LorentzVectorE(0.0, 0.0, 0.0, 250.0)
 
